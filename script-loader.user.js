@@ -10,6 +10,8 @@ let scriptsLoadList = [
     "commands-runner.js",
 ];
 
+console.log("test"); // TODO remove
+
 function loadScripts() {
     return new Promise((resolve) => {
         let loaded = 0;
