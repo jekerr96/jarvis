@@ -4,7 +4,7 @@ class CommandsRunner {
     }
 
     getCommandsList() {
-        return [BaseCommand, CommandAuth, CommandScroll];
+        return [CommandAuth, CommandScroll];
     }
 }
 

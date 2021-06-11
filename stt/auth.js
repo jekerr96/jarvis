@@ -1,5 +1,5 @@
-class TtsAuth extends BaseStt {
+class AuthStt extends BaseStt {
     getWords() {
-        return ["проверка"];
+        return ["авторизация"];
     }
 }

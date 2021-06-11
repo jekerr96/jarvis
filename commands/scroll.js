@@ -4,6 +4,6 @@ class CommandScroll extends BaseCommand {
     }
 
     getSpeechController() {
-        return TtsScroll;
+        return ScrollStt;
     }
 }

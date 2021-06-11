@@ -1,4 +1,4 @@
-class TtsScroll extends BaseStt {
+class ScrollStt extends BaseStt {
     getWords() {
         return ["скролл"];
     }

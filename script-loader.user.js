@@ -17,6 +17,7 @@ function loadScripts() {
         for (let script of scriptsLoadList) {
             console.log(script); // TODO remove
             let scriptTag = document.createElement("script");
+            scriptTag.setAttribute("defer", "");
 
             scriptTag.onload = () => {
                 loaded++;

@@ -8,6 +8,6 @@ class BaseCommand {
     }
 
     getSpeechController() {
-        return TtsAuth;
+        return AuthStt;
     }
 }
