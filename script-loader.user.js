@@ -7,7 +7,6 @@ let scriptsLoadList = [
     "commands/base.js",
     "commands/auth.js",
     "commands/scroll.js",
-    "commands-runner.js",
 ];
 
 function loadScripts() {
