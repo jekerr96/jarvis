@@ -33,3 +33,5 @@ function loadScripts() {
         }
     });
 }
+
+window.loadScripts = loadScripts;
