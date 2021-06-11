@@ -9,26 +9,33 @@ let scriptsLoadList = [
     "commands/scroll.js",
 ];
 
-function loadScripts() {
-    return new Promise((resolve) => {
-        let loaded = 0;
-
-        for (let script of scriptsLoadList) {
-            console.log(script); // TODO remove
-            let scriptTag = document.createElement("script");
-            scriptTag.setAttribute("defer", "");
-
-            scriptTag.onload = () => {
-                loaded++;
-
-                if (loaded === scriptsLoadList.length) {
-                    resolve();
-                }
-            };
-
-            document.head.appendChild(scriptTag);
-            scriptTag.setAttribute("src", baseDomain + script);
+async function loadScripts() {
+    for (let script of scriptsLoadList) {
+        try {
+            await _loadScript(script);
+        } catch (e) {
+            return false;
         }
+    }
+
+    return true;
+}
+
+function _loadScript(script) {
+    return new Promise((resolve, reject) => {
+        let scriptTag = document.createElement("script");
+        scriptTag.setAttribute("async", "false");
+
+        scriptTag.onload = () => {
+            resolve();
+        };
+
+        scriptTag.onerror = () => {
+            reject();
+        };
+
+        document.head.appendChild(scriptTag);
+        scriptTag.setAttribute("src", baseDomain + script);
     });
 }
 
