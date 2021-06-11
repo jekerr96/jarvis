@@ -8,4 +8,4 @@ class CommandsRunner {
     }
 }
 
-window.CommandRunner = CommandsRunner;
+window.CommandsRunner = CommandsRunner;
