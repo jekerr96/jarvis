@@ -4,7 +4,19 @@
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
+<script src="commands-runner.user.js"></script>
+<script src="script-loader.user.js"></script>
 <body>
+<script>
+    let commandRunner = new window.CommandsRunner();
 
+    window.addEventListener("keypress", (ev) => {
+        if (ev.ctrlKey && ev.which === 29) {
+            loadScripts().then(() => {
+                commandRunner.run();
+            });
+        }
+    });
+</script>
 </body>
 </html>
