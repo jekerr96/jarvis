@@ -3,5 +3,3 @@ class CommandAuth extends BaseCommand {
         console.log("ищем авторизацию"); // TODO remove
     }
 }
-
-window.CommandRunner = CommandsRunner;

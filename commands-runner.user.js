@@ -7,3 +7,5 @@ class CommandsRunner {
         return [BaseCommand, CommandAuth, CommandScroll];
     }
 }
+
+window.CommandRunner = CommandsRunner;
