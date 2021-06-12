@@ -7,8 +7,14 @@ class BaseStt {
     processEvent(text) {
         for (let word of this.getWords()) {
             if (word.toLowerCase() === text.toLowerCase()) {
-                return this.runCallback();
+                return this.runCallback(text);
             }
+        }
+
+        let regExp = this.getRegExp();
+
+        if (regExp && regExp.test(text)) {
+            return this.runCallback(text);
         }
     }
 
@@ -16,9 +22,13 @@ class BaseStt {
         return [];
     }
 
-    runCallback() {
+    getRegExp() {
+
+    }
+
+    runCallback(text) {
         if (this.callback && typeof this.callback === "function") {
-            return this.callback();
+            return this.callback(text);
         }
     }
 

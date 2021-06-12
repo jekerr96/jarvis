@@ -26,7 +26,7 @@ class CommandsRunner {
     }
 
     getCommandsList() {
-        return [CommandReloadPage, CommandAuth];
+        return [CommandReloadPage, CommandAuth, CommandYoutubeOpenVideo, CommandYoutubeOpenSubscribe, CommandBack, CommandToMain, CommandScroll];
     }
 
     setIsRun(state) {

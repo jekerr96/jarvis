@@ -1,16 +1,27 @@
 let baseDomain = "https://jarvis.local/";
 let scriptsLoaded = false;
 let scriptsLoadList = [
+    "helper/number-converter.js",
     "commands-runner.user.js",
     "stt/stt.js",
 
     "stt/base.js",
     "stt/auth.js",
     "stt/reload-page.js",
+    "stt/youtube-open-video.js",
+    "stt/youtube-open-subscribe.js",
+    "stt/back.js",
+    "stt/to-main.js",
+    "stt/scroll.js",
 
     "commands/base.js",
     "commands/auth.js",
     "commands/reload-page.js",
+    "commands/youtube-open-video.js",
+    "commands/youtube-open-subscribe.js",
+    "commands/back.js",
+    "commands/to-main.js",
+    "commands/scroll.js",
 ];
 
 async function loadScripts() {

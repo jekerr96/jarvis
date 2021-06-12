@@ -1,5 +1,5 @@
 class ReloadPageStt extends BaseStt {
     getWords() {
-        return ["обнови страницу"];
+        return ["обнови страницу", "обновить страницу"];
     }
 }
