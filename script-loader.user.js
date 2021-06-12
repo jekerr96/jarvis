@@ -1,15 +1,23 @@
 let baseDomain = "https://jarvis.local/";
+let scriptsLoaded = false;
 let scriptsLoadList = [
+    "commands-runner.user.js",
     "stt/stt.js",
+
     "stt/base.js",
     "stt/auth.js",
-    "stt/scroll.js",
+    "stt/reload-page.js",
+
     "commands/base.js",
     "commands/auth.js",
-    "commands/scroll.js",
+    "commands/reload-page.js",
 ];
 
 async function loadScripts() {
+    if (scriptsLoaded || typeof BaseStt !== "undefined") {
+        return true;
+    }
+
     for (let script of scriptsLoadList) {
         try {
             await _loadScript(script);
@@ -18,6 +26,7 @@ async function loadScripts() {
         }
     }
 
+    scriptsLoaded = true;
     return true;
 }
 
@@ -39,4 +48,21 @@ function _loadScript(script) {
     });
 }
 
-window.loadScripts = loadScripts;
+async function run() {
+    await loadScripts();
+
+    let commandRunner = new CommandsRunner();
+
+    window.addEventListener("keypress", (ev) => {
+        if (ev.ctrlKey && ev.which === 29) {
+            commandRunner.toggle();
+            sessionStorage.setItem("active", commandRunner.isRun() ? "yes" : "no");
+        }
+    });
+
+    if (sessionStorage.getItem("active") === "yes") {
+        commandRunner.run();
+    }
+}
+
+run();

@@ -1,33 +1,44 @@
 let registeredRecognition = [];
 let recognitionIsStart = false;
+let recognition;
 
 function registerRecognition(callback) {
     if (callback && typeof callback === "function") {
         registeredRecognition.push(callback);
     }
 
-    if (!recognitionIsStart) {
-        recognitionStart();
-    }
-
-    recognitionIsStart = true;
+    recognitionStart();
 }
 
 function recognitionStart() {
-    let recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition || window.mozSpeechRecognition || window.msSpeechRecognition)();
+    if (recognitionIsStart) {
+        return;
+    }
 
+    recognitionIsStart = true;
+
+    recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition || window.mozSpeechRecognition || window.msSpeechRecognition)();
     recognition.lang = "ru-RU";
 
     recognition.onresult = (event) => {
+        console.info("Result: " + event.results.item(0).item(0).transcript);
         registeredRecognition.forEach(callback => {
-            console.log("Result: " + event.results.item(0).item(0).transcript); // TODO remove
             callback(event.results.item(0).item(0).transcript);
         })
     };
 
     recognition.onend = () => {
-        recognition.start();
+        if (recognitionIsStart) {
+            recognition.start();
+        }
     };
 
     recognition.start();
+}
+
+function recognitionStop() {
+    if (recognition) {
+        recognitionIsStart = false;
+        recognition.stop();
+    }
 }
