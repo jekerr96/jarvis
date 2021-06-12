@@ -22,9 +22,17 @@ function recognitionStart() {
 
     recognition.onresult = (event) => {
         console.info("Result: " + event.results.item(0).item(0).transcript);
+        let speechResults = [];
+
         registeredRecognition.forEach(callback => {
-            callback(event.results.item(0).item(0).transcript);
-        })
+            let result = callback(event.results.item(0).item(0).transcript);
+
+            if (result) {
+                speechResults.push(result);
+            }
+        });
+
+        speechArray(speechResults);
     };
 
     recognition.onend = () => {
@@ -41,4 +49,24 @@ function recognitionStop() {
         recognitionIsStart = false;
         recognition.stop();
     }
+}
+
+async function speechArray(speechArray) {
+    for (let text of speechArray) {
+        let speechObject = new SpeechSynthesisUtterance();
+        speechObject.text = text;
+        speechObject.lang = "ru";
+        // speechObject.voice = window.speechSynthesis.getVoices()[0];
+        await speech(speechObject);
+    }
+}
+
+async function speech(speechObject) {
+    return new Promise(resolve => {
+        speechObject.onend = () => {
+            resolve();
+        };
+
+        window.speechSynthesis.speak(speechObject);
+    });
 }

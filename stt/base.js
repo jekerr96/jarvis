@@ -7,7 +7,7 @@ class BaseStt {
     processEvent(text) {
         for (let word of this.getWords()) {
             if (word.toLowerCase() === text.toLowerCase()) {
-                this.runCallback();
+                return this.runCallback();
             }
         }
     }
@@ -18,7 +18,7 @@ class BaseStt {
 
     runCallback() {
         if (this.callback && typeof this.callback === "function") {
-            this.callback();
+            return this.callback();
         }
     }
 

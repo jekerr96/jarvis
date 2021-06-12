@@ -1,7 +1,7 @@
 class CommandReloadPage extends BaseCommand {
     runAction() {
-        console.log("reload"); // TODO remove
         window.location.reload();
+        return "Обновляю страницу";
     }
 
     getSpeechController() {

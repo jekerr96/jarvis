@@ -1,5 +1,12 @@
 class CommandAuth extends BaseCommand {
     runAction() {
-        document.querySelector("[class*=auth]")?.click();
+        let auth = document.querySelector("[class*=auth]");
+        auth?.click();
+
+        if (auth) {
+            return "Авторизовываюсь";
+        } else {
+            return "Мне не удалось найти авторизацию";
+        }
     }
 }
