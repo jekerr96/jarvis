@@ -1,6 +1,6 @@
 class YoutubeOpenVideoStt extends BaseStt {
     getWords() {
-        return ["обнови страницу"];
+        return [];
     }
 
     getRegExp() {
