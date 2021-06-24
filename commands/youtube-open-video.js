@@ -14,16 +14,12 @@ class CommandYoutubeOpenVideo extends BaseCommand {
         }
 
         let videos = document.querySelectorAll("a#thumbnail");
+        let video = videos[videoNumber - 1];
+        video?.click();
 
-        for (let [index, video] of videos.entries()) {
-            if ((index + 1) === videoNumber) {
-                video.click();
-
-                return;
-            }
+        if (!video) {
+            return "Не могу найти видео";
         }
-
-        return "Не могу найти видео";
     }
 
     getSpeechController() {
